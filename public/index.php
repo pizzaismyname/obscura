@@ -2,13 +2,15 @@
 declare(strict_types=1);
 
 use Phalcon\Di\FactoryDefault;
+use Phalcon\Debug;
 
 error_reporting(E_ALL);
 
-(new Phalcon\Debug)->listen();
-
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
+
+$debug = new Debug();
+$debug->listen();
 
 /**
  * The FactoryDefault Dependency Injector automatically registers
