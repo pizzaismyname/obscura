@@ -11,7 +11,7 @@ $di->set(
         $router->clear();
 
         $router->mount(
-            new AdminRoutes()
+            new SessionRoutes()
         );
 
         /**
