@@ -14,6 +14,10 @@ $di->set(
             new SessionRoutes()
         );
 
+        $router->mount(
+            new ThemeRoutes()
+        );
+
         /**
          * Default Routing
          */

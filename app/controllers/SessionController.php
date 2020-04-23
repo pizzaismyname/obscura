@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class SessionController extends \Phalcon\Mvc\Controller
+class SessionController extends ControllerBase
 {
 
     public function createAction()
@@ -24,10 +24,10 @@ class SessionController extends \Phalcon\Mvc\Controller
                 );
                 $this->response->redirect();
             } else {
-                $this->response->redirect('login');
+                $this->response->redirect('/admin/login');
             }
         } else {
-            $this->response->redirect('login');
+            $this->response->redirect('/admin/login');
         }
     }
 

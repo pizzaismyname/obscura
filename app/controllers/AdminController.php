@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class AdminController extends \Phalcon\Mvc\Controller
+class AdminController extends ControllerBase
 {
 
     public function indexAction()

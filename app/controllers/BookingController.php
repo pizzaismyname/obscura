@@ -1,7 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-class BookingController extends \Phalcon\Mvc\Controller
+class BookingController extends ControllerBase
 {
 
     public function indexAction()
