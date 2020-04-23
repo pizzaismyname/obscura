@@ -26,5 +26,6 @@ return new \Phalcon\Config([
         'libraryDir'     => APP_PATH . '/library/',
         'cacheDir'       => BASE_PATH . '/cache/',
         'baseUri'        => '/',
+        'routesDir'       => APP_PATH . '/config/route-group/'
     ]
 ]);
