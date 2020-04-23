@@ -66,13 +66,13 @@ class Bookings extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $id_tema;
+    public $id_admin;
 
     /**
      *
      * @var integer
      */
-    public $id_admin;
+    public $id_theme;
 
     /**
      * Validations and business logic
@@ -103,8 +103,8 @@ class Bookings extends \Phalcon\Mvc\Model
     {
         $this->setSchema("obscura");
         $this->setSource("bookings");
-        $this->belongsTo('id_tema', '\Themes', 'id', ['alias' => 'Themes']);
         $this->belongsTo('id_admin', '\Admins', 'id', ['alias' => 'Admins']);
+        $this->belongsTo('id_theme', '\Themes', 'id', ['alias' => 'Themes']);
     }
 
     /**

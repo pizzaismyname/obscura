@@ -1,5 +1,5 @@
 <h1>New Theme</h1>
-<form method="POST" action="{{ url("/theme/new") }}">
+<form method="POST" action="{{ url("/theme/new") }}" enctype="multipart/form-data">
     <div class="form-group">
         <input type="text" class="form-control" name="name" placeholder="Theme name">
     </div>

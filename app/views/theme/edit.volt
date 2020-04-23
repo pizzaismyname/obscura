@@ -1,5 +1,5 @@
 <h1>Change a Theme</h1>
-<form method="PUT" action="{{ url("/theme/edit") }}">
+<form method="PUT" action="{{ url("/theme/edit") }}" enctype="multipart/form-data">
     <div class="form-group">
         <input type="text" class="form-control" name="name" placeholder="Theme name">
     </div>

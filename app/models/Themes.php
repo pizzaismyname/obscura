@@ -42,7 +42,7 @@ class Themes extends \Phalcon\Mvc\Model
     {
         $this->setSchema("obscura");
         $this->setSource("themes");
-        $this->hasMany('id', 'Bookings', 'id_tema', ['alias' => 'Bookings']);
+        $this->hasMany('id', 'Bookings', 'id_theme', ['alias' => 'Bookings']);
     }
 
     /**
