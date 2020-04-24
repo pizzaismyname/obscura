@@ -20,28 +20,28 @@ class themeRoutes extends RouterGroup
         );
 
         $this->addGet(
-            '/new',
+            '/add',
             [
                 'action'    => 'create',
             ]
         );
 
         $this->addPost(
-            '/new',
+            '/add',
             [
                 'action'    => 'store',
             ]
         );
 
         $this->addGet(
-            '/change/{id}',
+            '/edit/{id}',
             [
                 'action'    => 'edit',
             ]
         );
 
         $this->addPost(
-            '/change',
+            '/edit',
             [
                 'action'    => 'update',
             ]

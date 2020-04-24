@@ -1,5 +1,5 @@
 <h1>All Themes</h1>
-<a href="{{ url(" /theme/new ") }}" class="btn btn-success">New Theme</a>
+<a href="{{ url("/theme/add") }}" class="btn btn-success">New Theme</a>
 <table class="table">
 	<thead>
 		<tr>
@@ -16,14 +16,22 @@
 				<td>{{ theme.name }}</td>
 				<td>{{ theme.extra_price }}</td>
 				<td>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-						Show details
-					</button>
-					<a href="/theme/change/{{ theme.id }}" class="btn btn-warning">Change</a>
-					<form method="POST" action="{{ url( "/theme/delete") }}">
-						<input type="hidden" name="id" value="{{ theme.id }}">
-						<input type="submit" class="btn btn-danger" value="Remove">
-					</form>
+					<div class="row">
+						<div class="col-md-2">
+							<button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter">
+								Details
+							</button>
+						</div>
+						<div class="col-md-2">
+							<a href="/theme/edit/{{ theme.id }}" class="btn btn-warning w-100">Edit</a>
+						</div>
+						<div class="col-md-2">
+							<form method="POST" action="{{ url( "/theme/delete") }}">
+								<input type="hidden" name="id" value="{{ theme.id }}">
+								<input type="submit" class="btn btn-danger w-100" value="Delete">
+							</form>
+						</div>
+					</div>
 				</td>
 			</tr>
 		{% endfor %}
@@ -41,11 +49,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				...
+				{# theme.description|nl2br #}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>
