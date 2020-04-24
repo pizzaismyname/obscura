@@ -16,10 +16,10 @@ class ThemeController extends ControllerBase
 
     public function storeAction()
     {
-        $theme = new Themes;
+        $theme = new Themes();
 
         $name = $this->request->getPost('name');
-        $description = $this->request->getPost('description');
+        $description = nl2br($this->request->getPost('description'));
         $extra_price = $this->request->getPost('extra_price');
 
         $picture_path = 'img/theme/' . $name . "_" . date("Y-m-d") . '.jpg';
@@ -46,5 +46,13 @@ class ThemeController extends ControllerBase
     { }
 
     public function destroyAction()
-    { }
+    {
+        $id = $this->request->getPost('id');
+
+        $theme = Themes::findFirst("id = '$id'");
+
+        $theme->delete();
+
+        $this->response->redirect('/theme/all');
+    }
 }

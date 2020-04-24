@@ -2,3 +2,4 @@
 .phalcon/
 .vscode/
 cache/
+public/img/theme/*

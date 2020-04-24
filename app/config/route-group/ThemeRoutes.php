@@ -47,8 +47,8 @@ class themeRoutes extends RouterGroup
             ]
         );
 
-        $this->addGet(
-            '/logout',
+        $this->addPost(
+            '/delete',
             [
                 'action'    => 'destroy',
             ]
