@@ -18,6 +18,10 @@ $di->set(
             new ThemeRoutes()
         );
 
+        $router->mount(
+            new BookingRoutes()
+        );
+
         /**
          * Default Routing
          */

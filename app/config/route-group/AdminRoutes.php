@@ -2,12 +2,12 @@
 
 use \Phalcon\Mvc\Router\Group as RouterGroup;
 
-class SessionRoutes extends RouterGroup
+class AdminRoutes extends RouterGroup
 {
     public function initialize()
     {
         $this->setPaths([
-            'controller' => 'session',
+            'controller' => 'admin',
         ]);
 
         $this->setPrefix('/admin');

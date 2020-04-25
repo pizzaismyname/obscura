@@ -2,7 +2,7 @@
 
 use \Phalcon\Mvc\Router\Group as RouterGroup;
 
-class themeRoutes extends RouterGroup
+class ThemeRoutes extends RouterGroup
 {
     public function initialize()
     {

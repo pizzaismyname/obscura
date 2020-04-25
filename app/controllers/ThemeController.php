@@ -61,8 +61,6 @@ class ThemeController extends ControllerBase
         $theme->description = $description;
         $theme->extra_price = $extra_price;
 
-        $theme->save();
-
         $picture_path = 'img/theme/' . $theme->id . "_" . $name . '.jpg';
         if ($this->request->hasFiles()) {
             $picture = $this->request->getUploadedFiles()[0];
