@@ -8,7 +8,7 @@
 			<th scope="col">End</th>
 			<th scope="col">Name</th>
 			<th scope="col">Phone Number</th>
-            <th scope="col">Price</th>
+			<th scope="col">Price</th>
 			<th scope="col">Action</th>
 		</tr>
 	</thead>
@@ -29,18 +29,25 @@
 								Details
 							</button>
 						</div>
-						<div class="col-md">
-							<form method="POST" action="{{ url( "/booking/approve") }}">
-								<input type="hidden" name="id" value="{{ booking.id }}">
-								<input type="submit" class="btn btn-success w-100" value="Approve">
-							</form>
-						</div>
-						<div class="col-md">
-							<form method="POST" action="{{ url( "/booking/cancel") }}">
-								<input type="hidden" name="id" value="{{ booking.id }}">
-								<input type="submit" class="btn btn-danger w-100" value="Cancel">
-							</form>
-						</div>
+						{% if booking.status == 1 %}
+							<div class="col-md">
+								Approved by
+								{{ booking.admins.name }}
+							</div>
+						{% else %}
+							<div class="col-md">
+								<form method="POST" action="{{ url( "/booking/approve") }}">
+									<input type="hidden" name="id" value="{{ booking.id }}">
+									<input type="submit" class="btn btn-success w-100" value="Approve">
+								</form>
+							</div>
+							<div class="col-md">
+								<form method="POST" action="{{ url( "/booking/cancel") }}">
+									<input type="hidden" name="id" value="{{ booking.id }}">
+									<input type="submit" class="btn btn-danger w-100" value="Cancel">
+								</form>
+							</div>
+						{% endif %}
 					</div>
 				</td>
 			</tr>
@@ -58,11 +65,11 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				{#
-                booking.email
-                booking.address
-                #}
+			<div
+				class="modal-body">{#
+										                booking.email
+										                booking.address
+										                #}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

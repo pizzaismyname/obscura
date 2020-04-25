@@ -115,8 +115,22 @@ class BookingController extends ControllerBase
     }
 
     public function approveAction()
-    { }
+    {
+        $id = $this->request->getPost('id');
+        $booking = Bookings::findFirst("id = '$id'");
+        $booking->status = 1;
+        $booking->id_admin = $this->session->get('auth')['id'];
+        $booking->save();
+
+        $this->response->redirect('booking/all');
+    }
 
     public function cancelAction()
-    { }
+    {
+        $id = $this->request->getPost('id');
+        $booking = Bookings::findFirst("id = '$id'");
+        $booking->delete();
+
+        $this->response->redirect('booking/all');
+    }
 }

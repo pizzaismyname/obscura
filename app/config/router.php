@@ -22,6 +22,10 @@ $di->set(
             new BookingRoutes()
         );
 
+        $router->mount(
+            new AdminRoutes()
+        );
+
         /**
          * Default Routing
          */

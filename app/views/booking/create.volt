@@ -4,7 +4,7 @@
 		<input type="text" class="form-control" name="name" placeholder="Name">
 	</div>
 	<div class="form-group">
-		<input type="text" class="form-control" name="email" placeholder="example@mail.com">
+		<input type="email" class="form-control" name="email" placeholder="example@mail.com">
 	</div>
 	<div class="form-group">
 		<input type="number" class="form-control" name="phone" placeholder="Phone Number">
@@ -32,7 +32,6 @@
 			{% endfor %}
 		</select>
 		<small class="form-text text-muted">If you don't choose a theme, it will automatically set to "No Theme"</small>
-
 	</div>
 	<input type="submit" class="btn btn-success" value="Proceed">
 </form>

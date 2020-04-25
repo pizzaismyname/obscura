@@ -30,6 +30,12 @@ class Admins extends \Phalcon\Mvc\Model
      *
      * @var string
      */
+    public $phone;
+
+    /**
+     *
+     * @var string
+     */
     public $password;
 
     /**
