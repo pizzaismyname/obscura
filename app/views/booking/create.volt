@@ -15,14 +15,17 @@
 	<div class="form-group">
 		<label for="date">Date</label>
 		<input type="date" class="form-control" name="date">
+		<small> {{ availability }} </small>
 	</div>
 	<div class="form-group">
 		<label for="start_time">Start time</label>
 		<input type="time" class="form-control" name="start_time">
+		<small> {{ availability }} </small>
 	</div>
 	<div class="form-group">
 		<label for="end_time">End time</label>
 		<input type="time" class="form-control" name="end_time">
+		<small> {{ availability }} </small>
 	</div>
 	<div class="form-group">
 		<select name="id_theme" class="form-control">

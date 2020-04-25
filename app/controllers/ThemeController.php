@@ -7,15 +7,27 @@ class ThemeController extends ControllerBase
 
     public function indexAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $themes = Themes::find();
         $this->view->themes = $themes;
     }
 
     public function createAction()
-    { }
+    {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+    }
 
     public function storeAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $name = $this->request->getPost('name');
         $description = $this->request->getPost('description');
         $extra_price = $this->request->getPost('extra_price');
@@ -43,6 +55,10 @@ class ThemeController extends ControllerBase
 
     public function editAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->dispatcher->getParam("id");
         $theme = Themes::findFirst("id = '$id' ");
         $this->view->theme = $theme;
@@ -50,6 +66,10 @@ class ThemeController extends ControllerBase
 
     public function updateAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         $description = $this->request->getPost('description');
@@ -76,6 +96,10 @@ class ThemeController extends ControllerBase
 
     public function destroyAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->request->getPost('id');
         $theme = Themes::findFirst("id = '$id'");
         $theme->delete();

@@ -6,10 +6,18 @@ class SessionController extends ControllerBase
 {
 
     public function createAction()
-    { }
+    {
+        if ($this->session->has('auth')) {
+            $this->response->redirect();
+        }
+    }
 
     public function storeAction()
     {
+        if ($this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $user = Admins::findFirst("email='$email'");
@@ -33,7 +41,11 @@ class SessionController extends ControllerBase
 
     public function destroyAction()
     {
-        $this->session->destroy();
-        $this->response->redirect();
+        if ($this->session->has('auth')) {
+            $this->session->destroy();
+            $this->response->redirect();
+        } else {
+            $this->response->redirect();
+        }
     }
 }

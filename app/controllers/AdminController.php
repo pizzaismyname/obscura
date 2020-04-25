@@ -6,19 +6,34 @@ class AdminController extends ControllerBase
 {
 
     public function homeAction()
-    { }
+    {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+    }
 
     public function indexAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
         $admins = Admins::find();
         $this->view->admins = $admins;
     }
 
     public function createAction()
-    { }
+    {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+    }
 
     public function storeAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $name = $this->request->getPost('name');
         $email = $this->request->getPost('email');
         $phone = $this->request->getPost('phone');
@@ -37,13 +52,17 @@ class AdminController extends ControllerBase
             $admin->save();
             $this->response->redirect('/admin/all');
         } else {
-            $this->view->message = nl2br("The password confirmation does not match.\n");
+            $this->view->message = "The password confirmation does not match.";
             return $this->view->pick(array('admin/create'));
         }
     }
 
     public function editAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->dispatcher->getParam("id");
         $admin = Admins::findFirst("id = '$id' ");
         $this->view->admin = $admin;
@@ -51,6 +70,10 @@ class AdminController extends ControllerBase
 
     public function updateAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         $email = $this->request->getPost('email');
@@ -71,7 +94,7 @@ class AdminController extends ControllerBase
                 $admin->save();
                 $this->response->redirect('/admin/all');
             } else {
-                $this->view->message = nl2br("The password confirmation does not match.\n");
+                $this->view->message = "The password confirmation does not match.";
                 return $this->view->pick(array('admin/create'));
             }
         } else {
@@ -82,6 +105,10 @@ class AdminController extends ControllerBase
 
     public function destroyAction()
     {
+        if (!$this->session->has('auth')) {
+            $this->response->redirect();
+        }
+
         $id = $this->dispatcher->getParam("id");
         $admin = Admins::findFirst("id = '$id' ");
         $admin->delete();
