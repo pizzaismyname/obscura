@@ -33,6 +33,13 @@ class BookingRoutes extends RouterGroup
             ]
         );
 
+        $this->addGet(
+            '/invoice',
+            [
+                'action'    => 'invoice',
+            ]
+        );
+
         $this->addPost(
             '/check',
             [

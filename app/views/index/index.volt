@@ -27,7 +27,7 @@
 </>
 
 <div>
-	<a href="/booking/add" class="btn btn-dark">Book Now!</a>
+	<a href="{{ url("/booking/add") }}" class="btn btn-dark">Book Now!</a>
 </div>
 
 <div>

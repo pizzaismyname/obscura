@@ -61,8 +61,16 @@ class BookingController extends ControllerBase
 
         $booking->save();
 
-        $this->response->redirect();
+        $this->view->code = $booking->id;
+        $this->view->booking = $booking;
+        $this->view->hours = $hours;
+        $this->view->minutes = $minutes;
+
+        return $this->view->pick(array('booking/invoice'));
     }
+
+    public function invoice()
+    { }
 
     public function checkAction()
     {
