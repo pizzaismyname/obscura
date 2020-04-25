@@ -66,26 +66,37 @@ class BookingController extends ControllerBase
 
     public function checkAction()
     {
-        $date = $this->request->getPost('date');
-        $start_time = $this->request->getPost('start_time');
-        $end_time = $this->request->getPost('end_time');
+        $check_date = $this->request->getPost('date');
+        $check_start_time = $this->request->getPost('start_time');
+        $check_end_time = $this->request->getPost('end_time');
 
         $bookings = Bookings::find();
 
         $available = 1;
+
         foreach ($bookings as $booking) {
-            if ($booking->date != $date) {
+            if ($booking->date != $check_date) {
                 continue;
             } else {
-                if ($start_time >= $booking->start_time && $start_time <= $booking->end + 30) {
+
+                $start = strtotime($booking->start_time);
+                $start_time = date("H:i", strtotime('-0 minutes', $start));
+                $end = strtotime($booking->end_time);
+                $end_time = date("H:i", strtotime('+30 minutes', $end));
+
+                if ($check_start_time >= $start_time && $check_start_time <= $end_time) {
                     $available = 0;
                     break;
-                } elseif ($end_time >= $booking->start_time && $end_time <= $booking->end + 30) {
+                } elseif ($check_end_time >= $start_time && $check_end_time <= $end_time) {
+                    $available = 0;
+                    break;
+                } elseif ($check_start_time <= $start_time && $check_end_time >= $end_time) {
                     $available = 0;
                     break;
                 }
             }
         }
+        $this->view->availability = "";
         if ($available) {
             $this->view->availability = "Yay! Our studio is available for that time and date. Book Now!";
         } else {
