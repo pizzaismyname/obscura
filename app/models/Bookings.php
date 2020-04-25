@@ -64,6 +64,12 @@ class Bookings extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var string
+     */
+    public $price;
+
+    /**
+     *
      * @var integer
      */
     public $id_admin;

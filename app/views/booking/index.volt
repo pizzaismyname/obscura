@@ -1,20 +1,27 @@
-<h1>All Themes</h1>
-<a href="{{ url("/theme/add") }}" class="btn btn-success">New Theme</a>
+<h1>All Bookings</h1>
 <table class="table">
 	<thead>
 		<tr>
 			<th scope="col">#</th>
+			<th scope="col">Date</th>
+			<th scope="col">Start</th>
+			<th scope="col">End</th>
 			<th scope="col">Name</th>
-			<th scope="col">Extra Price</th>
+			<th scope="col">Phone Number</th>
+            <th scope="col">Price</th>
 			<th scope="col">Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		{% for theme in themes %}
+		{% for booking in bookings %}
 			<tr>
 				<th scope="row">{{ loop.index }}</th>
-				<td>{{ theme.name }}</td>
-				<td>{{ theme.extra_price }}</td>
+				<td>{{ booking.date }}</td>
+				<td>{{ booking.start_time }}</td>
+				<td>{{ booking.end_time }}</td>
+				<td>{{ booking.name }}</td>
+				<td>{{ booking.phone }}</td>
+				<td>{{ booking.price }}</td>
 				<td>
 					<div class="row">
 						<div class="col-md">
@@ -23,12 +30,15 @@
 							</button>
 						</div>
 						<div class="col-md">
-							<a href="/theme/edit/{{ theme.id }}" class="btn btn-warning w-100">Edit</a>
+							<form method="POST" action="{{ url( "/booking/approve") }}">
+								<input type="hidden" name="id" value="{{ booking.id }}">
+								<input type="submit" class="btn btn-success w-100" value="Approve">
+							</form>
 						</div>
 						<div class="col-md">
-							<form method="POST" action="{{ url( "/theme/delete") }}">
-								<input type="hidden" name="id" value="{{ theme.id }}">
-								<input type="submit" class="btn btn-danger w-100" value="Delete">
+							<form method="POST" action="{{ url( "/booking/cancel") }}">
+								<input type="hidden" name="id" value="{{ booking.id }}">
+								<input type="submit" class="btn btn-danger w-100" value="Cancel">
 							</form>
 						</div>
 					</div>
@@ -49,7 +59,10 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				{# theme.description|nl2br #}
+				{#
+                booking.email
+                booking.address
+                #}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

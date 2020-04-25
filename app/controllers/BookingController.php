@@ -6,7 +6,10 @@ class BookingController extends ControllerBase
 {
 
     public function indexAction()
-    { }
+    {
+        $bookings = Bookings::find();
+        $this->view->bookings = $bookings;
+    }
 
     public function createAction()
     {
@@ -26,6 +29,23 @@ class BookingController extends ControllerBase
         $id_theme = $this->request->getPost('id_theme');
         $status = 0;
 
+        $theme = Themes::findFirst("id = '$id_theme' ");
+
+        $start = new DateTime($start_time);
+        $end = new DateTime($end_time);
+        $duration = $start->diff($end);
+        $hours = $duration->format("%H");
+        $minutes = $duration->format("%i");
+        if ($hours <= 1) {
+            $price = 100000 + $theme->extra_price;
+        } else {
+            $price = $hours * 100000 + $theme->extra_price;
+        }
+        $extra_minutes = $minutes % 60;
+        if ($extra_minutes > 0) {
+            $price = $price + 100000;
+        }
+
         $booking = new Bookings();
 
         $booking->name = $name;
@@ -37,6 +57,7 @@ class BookingController extends ControllerBase
         $booking->end_time = $end_time;
         $booking->id_theme = $id_theme;
         $booking->status = $status;
+        $booking->price = $price;
 
         $booking->save();
 
@@ -71,7 +92,6 @@ class BookingController extends ControllerBase
             $this->view->availability = "Sorry, our studio is not available for that time and date.";
         }
         return $this->view->pick(array('index/index'));
-        // $this->response->redirect();
     }
 
     public function showAction()
