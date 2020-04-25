@@ -36,4 +36,7 @@
 		<input type="number" class="form-control" name="id" value="{{ booking.id }}" placeholder="Enter your booking code here">
 		<input type="submit" class="btn btn-info" value="Show">
 	</form>
+	<div>
+		{{ status }}
+	</div>
 </div>

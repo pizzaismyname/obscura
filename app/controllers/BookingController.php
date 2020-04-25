@@ -79,15 +79,18 @@ class BookingController extends ControllerBase
         $id = $this->request->getPost('id');
 
         $booking = Bookings::findFirst("id = '$id' ");
-        // $status = $booking->status;
 
-        // if ($status == 0) {
-        //     $this->view->status = "Pending";
-        // } else if ($status == 1) {
-        //     $this->view->status = "Approved";
-        // } else {
-        //     $this->view->status = "Sorry, we cannot find a booking with that code\nor your booking has been cancelled.";
-        // }
+        if ($booking == null) {
+            $this->view->status = "Sorry, we cannot find a booking with that code or your booking has been cancelled.";
+        } else {
+            $status = $booking->status;
+            if ($status) {
+                $this->view->status = "Your booking has been approved.";
+            } else {
+                $this->view->status = "Your booking is still being processed.";
+            }
+        }
+
         return $this->view->pick(array('index/index'));
     }
 
