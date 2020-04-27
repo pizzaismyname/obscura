@@ -56,15 +56,43 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script>
-			$(".theme-details").click(function () {
-				var name = $(this).data("name");
-				var description = $(this).data("description");
-				var price = $(this).data("price");
-				var picture = "/" + $(this).data("picture");
-				$("#details-name").html(name);
-				$("#details-description").html(description);
-				$("#details-price").html(price);
-				$("#details-picture").attr('src',picture);
+			$(document).ready(function() {
+				$(".theme-details").click(function () {
+					var name = $(this).data("name");
+					var description = $(this).data("description");
+					var price = $(this).data("price");
+					var picture = "/" + $(this).data("picture");
+					$("#details-name").html(name);
+					$("#details-description").html(description);
+					$("#details-price").html(price);
+					$("#details-picture").attr('src',picture);
+				});
+				$(".booking-details").click(function () {
+					var id = $(this).data("id");
+					var name = $(this).data("name");
+					var phone = $(this).data("phone");
+					var email = $(this).data("email");
+					var address = $(this).data("address");
+					var date = $(this).data("date");
+					var start = $(this).data("start");
+					var end = $(this).data("end");
+					var theme = $(this).data("theme");
+					var price = $(this).data("price");
+					var status = $(this).data("status");
+					var admin = $(this).data("admin");
+					$("#details-id").html(id);
+					$("#details-name").html(name);
+					$("#details-phone").html(phone);
+					$("#details-email").html(email);
+					$("#details-address").html(address);
+					$("#details-date").html(date);
+					$("#details-start").html(start);
+					$("#details-end").html(end);
+					$("#details-theme").html(theme);
+					$("#details-price").html(price);
+					$("#details-status").html(status);
+					$("#details-admin").html(admin);
+				});
 			});
 		</script>
 	</body>

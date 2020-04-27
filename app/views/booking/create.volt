@@ -15,26 +15,49 @@
 	<div class="form-group">
 		<label for="date">Date</label>
 		<input type="date" class="form-control" name="date">
-		<small> {{ availability }} </small>
+		<small>
+			{{ availability }}
+		</small>
 	</div>
 	<div class="form-group">
 		<label for="start_time">Start time</label>
 		<input type="time" class="form-control" name="start_time">
-		<small> {{ availability }} </small>
+		<small>
+			{{ availability }}
+		</small>
 	</div>
 	<div class="form-group">
 		<label for="end_time">End time</label>
 		<input type="time" class="form-control" name="end_time">
-		<small> {{ availability }} </small>
+		<small>
+			{{ availability }}
+		</small>
 	</div>
 	<div class="form-group">
-		<select name="id_theme" class="form-control">
-			<option value="0">Choose a theme</option>
-			{% for theme in themes %}
-				<option value="{{ theme.id }}">{{ theme.name }}</option>
-			{% endfor %}
-		</select>
+		<label for="id_theme">Theme</label>
 		<small class="form-text text-muted">If you don't choose a theme, it will automatically set to "No Theme"</small>
+		<div class="btn-group-vertical btn-group-toggle w-100" data-toggle="buttons">
+			{% for theme in themes %}
+				<label class="btn btn-dark {% if theme.id == 0 %} active {% endif %}">
+					<input type="radio" name="id_theme" id="{{ theme.id }}" autocomplete="off" {% if theme.id == 0 %} checked {% endif %}>
+					<div class="row">
+						<div class="col-md my-auto">
+							<img src="/{{ theme.picture }}" width="60%">
+						</div>
+						<div class="col-md text-left">
+							{{ theme.name }}<br>
+							+ Rp
+							{{ theme.extra_price }}<br>
+							{{ theme.description|nl2br }}
+						</div>
+					</div>
+				</label>
+			{% endfor %}
+		</div>
+		{# <select name="id_theme" class="form-control"> #}
+	{# <option value="0">Choose a theme</option> #}
+		{# <option value="{{ theme.id }}">{{ theme.name }}</option> #}
+		{# </select> #}
 	</div>
 	<input type="submit" class="btn btn-success" value="Proceed">
 </form>
