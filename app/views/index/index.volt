@@ -49,7 +49,7 @@
 			<div class="card-body">
 				<form method="POST" action="{{ url( "/booking/show") }}">
 					<div class="form-group">
-						<input type="number" class="form-control  w-50 mx-auto" name="id" value="{{ booking.id }}" placeholder="Enter booking code here">
+						<input type="number" class="form-control  w-50 mx-auto" name="id" value="{{ booking.id }}" placeholder="Enter invoice code here">
 					</div>
 					<input type="submit" class="btn btn-info" value="Show">
 				</form>

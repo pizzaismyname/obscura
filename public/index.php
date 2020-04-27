@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
+date_default_timezone_set('Asia/Jakarta');
+
 $debug = new Debug();
 $debug->listen();
 

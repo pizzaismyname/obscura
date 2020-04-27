@@ -38,8 +38,8 @@
 		<small class="form-text text-muted">If you don't choose a theme, it will automatically set to "No Theme"</small>
 		<div class="btn-group-vertical btn-group-toggle w-100" data-toggle="buttons">
 			{% for theme in themes %}
-				<label class="btn btn-dark {% if theme.id == 0 %} active {% endif %}">
-					<input type="radio" name="id_theme" id="{{ theme.id }}" autocomplete="off" {% if theme.id == 0 %} checked {% endif %}>
+				<label class="btn btn-dark my-1 {% if theme.id == 0 %} active {% endif %}">
+					<input type="radio" name="id_theme" value="{{ theme.id }}" autocomplete="off" {% if theme.id == 0 %} checked {% endif %}>
 					<div class="row">
 						<div class="col-md my-auto">
 							<img src="/{{ theme.picture }}" width="60%">
