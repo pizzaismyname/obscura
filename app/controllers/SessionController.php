@@ -30,7 +30,7 @@ class SessionController extends ControllerBase
                         'name' => $user->name,
                     ]
                 );
-                $this->response->redirect();
+                $this->response->redirect('/admin/dashboard');
             } else {
                 $this->response->redirect('/admin/login');
             }

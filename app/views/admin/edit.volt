@@ -14,9 +14,7 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control" name="cpassword" placeholder="Confirm Password">
-		{#
-        <small>{{ message }}</small>
-        #}
+		<small>{{ message }}</small>
 	</div>
 	<input type="hidden" name="id" value="{{ admin.id }}">
 	<input type="submit" class="btn btn-success" value="Save">

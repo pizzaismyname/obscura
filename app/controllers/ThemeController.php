@@ -102,6 +102,10 @@ class ThemeController extends ControllerBase
 
         $id = $this->request->getPost('id');
         $theme = Themes::findFirst("id = '$id'");
+
+        $picture_path = 'img/theme/' . $theme->id . "_" . $theme->name . '.jpg';
+        unlink($picture_path);
+
         $theme->delete();
 
         $this->response->redirect('/theme/all');

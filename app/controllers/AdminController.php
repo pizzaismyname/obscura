@@ -109,9 +109,10 @@ class AdminController extends ControllerBase
             $this->response->redirect();
         }
 
-        $id = $this->dispatcher->getParam("id");
+        $id = $this->request->getPost('id');
         $admin = Admins::findFirst("id = '$id' ");
         $admin->delete();
+
         $this->response->redirect('/admin/all');
     }
 }

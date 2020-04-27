@@ -6,6 +6,7 @@
 			<th scope="col">#</th>
 			<th scope="col">Name</th>
 			<th scope="col">Email</th>
+			<th scope="col">Phone</th>
 			<th scope="col">Action</th>
 		</tr>
 	</thead>
@@ -15,6 +16,7 @@
 				<th scope="row">{{ loop.index }}</th>
 				<td>{{ admin.name }}</td>
 				<td>{{ admin.email }}</td>
+				<td>{{ admin.phone }}</td>
 				<td>
 					<div class="row">
 						<div class="col-md">

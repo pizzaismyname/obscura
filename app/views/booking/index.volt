@@ -31,7 +31,7 @@
 						</div>
 						{% if booking.status == 1 %}
 							<div class="col-md">
-								Approved by
+								Approved by<br>
 								{{ booking.admins.name }}
 							</div>
 						{% else %}

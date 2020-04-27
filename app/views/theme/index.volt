@@ -18,7 +18,7 @@
 				<td>
 					<div class="row">
 						<div class="col-md">
-							<button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter">
+							<button type="button" class="theme-details btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter" data-name="{{ theme.name }}" data-description="{{ theme.description|nl2br }}" data-price="{{ theme.extra_price }}" data-picture="{{ theme.picture }}">
 								Details
 							</button>
 						</div>
@@ -43,15 +43,27 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+				<h5 class="modal-title" id="exampleModalCenterTitle">
+					<div id="details-name"></div>
+				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				{# theme.description|nl2br #}
+				<div class="row">
+					<div class="col-md">
+						<img id="details-picture" width="100%">
+					</div>
+					<div class="col-md">
+						<div id="details-description"></div>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
+				<div class="mr-auto">
+					Rp <span id="details-price"></span>
+				</div>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
