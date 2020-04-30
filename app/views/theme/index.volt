@@ -53,7 +53,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md">
-						<img id="details-picture" width="100%">
+						{{ image("id":"details-picture", "width":"100%") }}
 					</div>
 					<div class="col-md">
 						<div id="details-description"></div>
@@ -62,7 +62,8 @@
 			</div>
 			<div class="modal-footer">
 				<div class="mr-auto">
-					Rp <span id="details-price"></span>
+					Rp
+					<span id="details-price"></span>
 				</div>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>

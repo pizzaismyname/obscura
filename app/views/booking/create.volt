@@ -42,7 +42,7 @@
 					<input type="radio" name="id_theme" value="{{ theme.id }}" autocomplete="off" {% if theme.id == 0 %} checked {% endif %}>
 					<div class="row">
 						<div class="col-md my-auto">
-							<img src="/{{ theme.picture }}" width="60%">
+							{{ image(theme.picture, "width":"60%") }}
 						</div>
 						<div class="col-md text-left">
 							{{ theme.name }}<br>
@@ -54,10 +54,6 @@
 				</label>
 			{% endfor %}
 		</div>
-		{# <select name="id_theme" class="form-control"> #}
-	{# <option value="0">Choose a theme</option> #}
-		{# <option value="{{ theme.id }}">{{ theme.name }}</option> #}
-		{# </select> #}
 	</div>
 	<input type="submit" class="btn btn-success" value="Proceed">
 </form>
