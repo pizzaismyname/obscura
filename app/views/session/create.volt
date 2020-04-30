@@ -1,4 +1,4 @@
-<h1>Admin Login Page</h1>
+<h1>Staff Login Page</h1>
 <form method="POST" action="{{ url("/admin/login") }}">
 	<div class="form-group">
 		<input type="email" class="form-control" name="email" placeholder="example@mail.com">
