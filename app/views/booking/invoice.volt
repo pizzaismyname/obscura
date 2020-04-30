@@ -4,7 +4,7 @@
 <small class="text-muted">Please screenshot this page to save your booking details.</small>
 <h2>
 	<small class="text-muted">
-		Invoice code: #{{ code }}
+		Invoice code: #{{ booking.id }}
 	</small>
 </h2>
 <div class="row">
@@ -70,7 +70,7 @@
 					<th scope="row">Theme ({{ booking.themes.name }})</th>
 					<td class="text-right">
 						Rp
-						{{ booking.themes.extra_price }}.0
+						{{ booking.themes.extra_price }}
 					</td>
 				</tr>
 				<tr class="table-info">
@@ -79,7 +79,7 @@
 					</th>
 					<th class="text-right">
 						Rp
-						{{ booking.price }}
+						{{ booking.price }}.0
 					</th>
 				</tr>
 			</tbody>

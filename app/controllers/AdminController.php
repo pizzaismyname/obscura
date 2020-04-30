@@ -53,7 +53,13 @@ class AdminController extends ControllerBase
             $this->response->redirect('/admin/all');
         } else {
             $this->view->message = "The password confirmation does not match.";
-            return $this->view->pick(array('admin/create'));
+
+            return $this->dispatcher->forward(
+                [
+                    "controller" => "admin",
+                    "action"     => "create",
+                ]
+            );
         }
     }
 
@@ -95,7 +101,13 @@ class AdminController extends ControllerBase
                 $this->response->redirect('/admin/all');
             } else {
                 $this->view->message = "The password confirmation does not match.";
-                return $this->view->pick(array('admin/create'));
+
+                return $this->dispatcher->forward(
+                    [
+                        "controller" => "admin",
+                        "action"     => "edit",
+                    ]
+                );
             }
         } else {
             $admin->save();

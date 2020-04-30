@@ -37,25 +37,29 @@ class BookingController extends ControllerBase
 
         $available = 1;
 
-        foreach ($bookings as $booking) {
-            if ($booking->date != $check_date) {
-                continue;
-            } else {
+        if ($check_date == null || $check_start_time == null || $check_end_time == null) {
+            $available = 0;
+        } else {
+            foreach ($bookings as $booking) {
+                if ($booking->date != $check_date) {
+                    continue;
+                } else {
 
-                $start = strtotime($booking->start_time);
-                $start_time = date("H:i", strtotime('-0 minutes', $start));
-                $end = strtotime($booking->end_time);
-                $end_time = date("H:i", strtotime('+30 minutes', $end));
+                    $start = strtotime($booking->start_time);
+                    $start_time = date("H:i", strtotime('-0 minutes', $start));
+                    $end = strtotime($booking->end_time);
+                    $end_time = date("H:i", strtotime('+30 minutes', $end));
 
-                if ($check_start_time >= $start_time && $check_start_time <= $end_time) {
-                    $available = 0;
-                    break;
-                } elseif ($check_end_time >= $start_time && $check_end_time <= $end_time) {
-                    $available = 0;
-                    break;
-                } elseif ($check_start_time <= $start_time && $check_end_time >= $end_time) {
-                    $available = 0;
-                    break;
+                    if ($check_start_time >= $start_time && $check_start_time <= $end_time) {
+                        $available = 0;
+                        break;
+                    } elseif ($check_end_time >= $start_time && $check_end_time <= $end_time) {
+                        $available = 0;
+                        break;
+                    } elseif ($check_start_time <= $start_time && $check_end_time >= $end_time) {
+                        $available = 0;
+                        break;
+                    }
                 }
             }
         }
@@ -66,7 +70,13 @@ class BookingController extends ControllerBase
             $end_time = $check_end_time;
         } else {
             $this->view->availability = "Sorry, our studio is not available for that time and date.";
-            return $this->view->pick(array('booking/create'));
+
+            return $this->dispatcher->forward(
+                [
+                    "controller" => "booking",
+                    "action"     => "create",
+                ]
+            );
         }
 
         $theme = Themes::findFirst("id = '$id_theme' ");
@@ -101,7 +111,6 @@ class BookingController extends ControllerBase
 
         $booking->save();
 
-        $this->view->code = $booking->id;
         $this->view->booking = $booking;
         $this->view->hours = $hours;
         $this->view->minutes = $minutes;
@@ -109,7 +118,7 @@ class BookingController extends ControllerBase
         return $this->view->pick(array('booking/invoice'));
     }
 
-    public function invoice()
+    public function invoiceAction()
     { }
 
     public function checkAction()
