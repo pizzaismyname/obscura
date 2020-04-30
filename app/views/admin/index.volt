@@ -1,5 +1,5 @@
 <h1>All Staffs</h1>
-<a href="{{ url("/admin/add") }}" class="btn btn-success">New Staff</a>
+{{ link_to('admin/add', 'New Staff', 'class':'btn btn-success') }}
 <table class="table">
 	<thead>
 		<tr>
@@ -20,7 +20,7 @@
 				<td>
 					<div class="row">
 						<div class="col-md">
-							<a href="/admin/edit/{{ admin.id }}" class="btn btn-warning w-100">Edit</a>
+							{{ link_to('admin/edit/' ~ admin.id, 'Edit', 'class':'btn btn-warning w-100') }}
 						</div>
 						<div class="col-md">
 							<form method="POST" action="{{ url( "/admin/delete") }}">

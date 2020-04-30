@@ -1,5 +1,5 @@
 <h1>All Themes</h1>
-<a href="{{ url("/theme/add") }}" class="btn btn-success">New Theme</a>
+{{ link_to('theme/add', 'New Theme', 'class':'btn btn-success') }}
 <table class="table">
 	<thead>
 		<tr>
@@ -23,7 +23,7 @@
 							</button>
 						</div>
 						<div class="col-md">
-							<a href="/theme/edit/{{ theme.id }}" class="btn btn-warning w-100">Edit</a>
+							{{ link_to('theme/edit/' ~ theme.id, 'Edit', 'class':'btn btn-warning w-100') }}
 						</div>
 						<div class="col-md">
 							<form method="POST" action="{{ url( "/theme/delete") }}">
