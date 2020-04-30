@@ -16,16 +16,16 @@
 			<tr>
 				<th scope="row">{{ booking.id }}</th>
 				<td>{{ booking.date }}</td>
-				<td>{{ booking.start_time }}
+				<td>{{ booking.start_time|slice(0,4) }}
 					-
-					{{ booking.end_time }}</td>
+					{{ booking.end_time|slice(0,4) }}</td>
 				<td>{{ booking.name }}</td>
 				<td>{{ booking.phone }}</td>
 				<td>{{ booking.price }}</td>
 				<td>
 					<div class="row">
 						<div class="col-md">
-							<button type="button" class="booking-details btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ booking.id }}" data-name="{{ booking.name }}" data-phone="{{ booking.phone }}" data-email="{{ booking.email }}" data-address="{{ booking.address }}" data-date="{{ booking.date }}" data-start="{{ booking.start_time }}" data-end="{{ booking.end_time }}" data-theme="{{ booking.themes.name }}" data-price="{{ booking.price }}" data-status="{% if booking.status == 1 %}Approved{% else %}Pending{% endif %}" data-admin="{{ booking.admins.name }}">
+							<button type="button" class="booking-details btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ booking.id }}" data-name="{{ booking.name }}" data-phone="{{ booking.phone }}" data-email="{{ booking.email }}" data-address="{{ booking.address }}" data-date="{{ booking.date }}" data-start="{{ booking.start_time|slice(0,4) }}" data-end="{{ booking.end_time|slice(0,4) }}" data-theme="{{ booking.themes.name }}" data-price="{{ booking.price }}" data-status="{% if booking.status == 1 %}Approved{% else %}Pending{% endif %}" data-admin="{{ booking.admins.name }}">
 								Details
 							</button>
 						</div>

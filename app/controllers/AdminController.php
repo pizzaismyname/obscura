@@ -113,6 +113,10 @@ class AdminController extends ControllerBase
         $admin = Admins::findFirst("id = '$id' ");
         $admin->delete();
 
+        if ($this->session->get('auth')['id'] == $id) {
+            $this->session->destroy();
+        }
+
         $this->response->redirect('/admin/all');
     }
 }

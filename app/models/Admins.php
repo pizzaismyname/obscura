@@ -65,7 +65,7 @@ class Admins extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("obscura");
+        $this->setSchema("dbo");
         $this->setSource("admins");
         $this->hasMany('id', 'Bookings', 'id_admin', ['alias' => 'Bookings']);
     }

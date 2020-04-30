@@ -63,14 +63,14 @@
 					</th>
 					<td class="text-right">
 						Rp
-						{{ booking.price - booking.themes.extra_price}}
+						{{ booking.price - booking.themes.extra_price}}.0
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">Theme ({{ booking.themes.name }})</th>
 					<td class="text-right">
 						Rp
-						{{ booking.themes.extra_price }}
+						{{ booking.themes.extra_price }}.0
 					</td>
 				</tr>
 				<tr class="table-info">
