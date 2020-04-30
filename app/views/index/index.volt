@@ -4,7 +4,8 @@
 	</div>
 </div>
 
-<p>Great things are about to happen!
+<p>
+	Great things are about to happen!
 </p>
 
 <div class="row">
@@ -55,9 +56,9 @@
 				</form>
 				<footer class="blockquote-footer">
 					{% if status is defined %}
-					<div class="alert alert-info" role="alert">
-						{{ status }}
-					</div>
+						<div class="alert alert-info" role="alert">
+							{{ status }}
+						</div>
 					{% endif %}
 				</footer>
 			</div>

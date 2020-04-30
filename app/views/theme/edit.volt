@@ -4,7 +4,7 @@
 		<input type="text" class="form-control" name="name" value="{{ theme.name }}" placeholder="Theme name">
 	</div>
 	<div class="form-group">
-        <textarea type="text" class="form-control" name="description" placeholder="Write a description...">{{ theme.description }}</textarea>
+		<textarea type="text" class="form-control" name="description" placeholder="Write a description...">{{ theme.description }}</textarea>
 	</div>
 	<div class="form-group">
 		<input type="number" class="form-control" name="extra_price" value="{{ theme.extra_price }}" placeholder="Extra price">
