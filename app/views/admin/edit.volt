@@ -1,4 +1,16 @@
 <h1>Edit a Staff</h1>
+{% if messages is defined %}
+	{% for message in messages %}
+		<div class="alert alert-danger" role="alert">
+			{{ message }}
+		</div>
+	{% endfor %}
+{% endif %}
+{% if flashSession.has('error') %}
+	<div class="alert alert-danger" role="alert">
+		{{ flashSession.output() }}
+	</div>
+{% endif %}
 <form method="POST" action="{{ url("/admin/edit") }}">
 	<div class="form-group">
 		<input type="text" class="form-control" name="name" value="{{ admin.name }}" placeholder="Name">
@@ -14,7 +26,6 @@
 	</div>
 	<div class="form-group">
 		<input type="password" class="form-control" name="cpassword" placeholder="Confirm Password">
-		<small>{{ message }}</small>
 	</div>
 	<input type="hidden" name="id" value="{{ admin.id }}">
 	<input type="submit" class="btn btn-success" value="Save">

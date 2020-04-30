@@ -35,9 +35,9 @@
 					<input type="submit" class="btn btn-info" value="Check">
 				</form>
 				<footer class="blockquote-footer">
-					{% if availability is defined %}
+					{% if flashSession.has('notice') %}
 						<div class="alert alert-info" role="alert">
-							{{ availability }}
+							{{ flashSession.output() }}
 						</div>
 					{% endif %}
 				</footer>
@@ -55,9 +55,17 @@
 					<input type="submit" class="btn btn-info" value="Show">
 				</form>
 				<footer class="blockquote-footer">
-					{% if status is defined %}
-						<div class="alert alert-info" role="alert">
-							{{ status }}
+					{% if flashSession.has('error') %}
+						<div class="alert alert-danger" role="alert">
+							{{ flashSession.output() }}
+						</div>
+					{% elseif flashSession.has('success') %}
+						<div class="alert alert-success" role="alert">
+							{{ flashSession.output() }}
+						</div>
+					{% elseif flashSession.has('warning') %}
+						<div class="alert alert-warning" role="alert">
+							{{ flashSession.output() }}
 						</div>
 					{% endif %}
 				</footer>

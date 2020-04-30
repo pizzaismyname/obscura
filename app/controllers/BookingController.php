@@ -69,7 +69,7 @@ class BookingController extends ControllerBase
             $start_time = $check_start_time;
             $end_time = $check_end_time;
         } else {
-            $this->view->availability = "Sorry, our studio is not available for that time and date.";
+            $this->flashSession->error('Sorry, our studio is not available for that time and date.');
 
             return $this->dispatcher->forward(
                 [
@@ -109,13 +109,23 @@ class BookingController extends ControllerBase
         $booking->status = $status;
         $booking->price = $price;
 
-        $booking->save();
+        if ($booking->save()) {
+            $this->view->booking = $booking;
+            $this->view->hours = $hours;
+            $this->view->minutes = $minutes;
 
-        $this->view->booking = $booking;
-        $this->view->hours = $hours;
-        $this->view->minutes = $minutes;
+            return $this->view->pick(array('booking/invoice'));
+        } else {
+            $messages = $booking->getMessages();
+            $this->view->messages = $messages;
 
-        return $this->view->pick(array('booking/invoice'));
+            return $this->dispatcher->forward(
+                [
+                    "controller" => "booking",
+                    "action"     => "create",
+                ]
+            );
+        }
     }
 
     public function invoiceAction()
@@ -158,11 +168,10 @@ class BookingController extends ControllerBase
                 }
             }
         }
-        $this->view->availability = "";
         if ($available) {
-            $this->view->availability = "Yay! Our studio is available for that time and date. Book Now!";
+            $this->flashSession->notice('Yay! Our studio is available for that time and date. Book Now!');
         } else {
-            $this->view->availability = "Sorry, our studio is not available for that time and date.";
+            $this->flashSession->notice('Sorry, our studio is not available for that time and date.');
         }
         return $this->view->pick(array('index/index'));
     }
@@ -174,13 +183,13 @@ class BookingController extends ControllerBase
         $booking = Bookings::findFirst("id = '$id' ");
 
         if ($booking == null) {
-            $this->view->status = "Sorry, we cannot find a booking with that code or your booking has been cancelled.";
+            $this->flashSession->error('Sorry, we cannot find a booking with that code or your booking has been cancelled.');
         } else {
             $status = $booking->status;
             if ($status) {
-                $this->view->status = "Your booking has been approved.";
+                $this->flashSession->success('Your booking has been approved.');
             } else {
-                $this->view->status = "Your booking is still being processed.";
+                $this->flashSession->warning('Your booking is still being processed.');
             }
         }
 

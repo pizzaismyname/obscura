@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Phalcon\Validation\Message;
+
 class AdminController extends ControllerBase
 {
 
@@ -45,14 +47,9 @@ class AdminController extends ControllerBase
         $admin->name = $name;
         $admin->email = $email;
         $admin->phone = $phone;
-        $this->view->message = "";
-        if ($password == $cpassword) {
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $admin->password = $password;
-            $admin->save();
-            $this->response->redirect('/admin/all');
-        } else {
-            $this->view->message = "The password confirmation does not match.";
+
+        if ($password != $cpassword) {
+            $this->flashSession->error('password confirmation does not match');
 
             return $this->dispatcher->forward(
                 [
@@ -60,6 +57,23 @@ class AdminController extends ControllerBase
                     "action"     => "create",
                 ]
             );
+        } else {
+            $hash_password = password_hash($password, PASSWORD_DEFAULT);
+            $admin->password = $hash_password;
+
+            if ($admin->save()) {
+                $this->response->redirect('/admin/all');
+            } else {
+                $messages = $admin->getMessages();
+                $this->view->messages = $messages;
+
+                return $this->dispatcher->forward(
+                    [
+                        "controller" => "admin",
+                        "action"     => "create",
+                    ]
+                );
+            }
         }
     }
 
@@ -92,15 +106,10 @@ class AdminController extends ControllerBase
         $admin->name = $name;
         $admin->email = $email;
         $admin->phone = $phone;
-        $this->view->message = "";
+
         if ($password != null || $cpassword != null) {
-            if ($password == $cpassword) {
-                $password = password_hash($password, PASSWORD_DEFAULT);
-                $admin->password = $password;
-                $admin->save();
-                $this->response->redirect('/admin/all');
-            } else {
-                $this->view->message = "The password confirmation does not match.";
+            if ($password != $cpassword) {
+                $this->flashSession->error('password confirmation does not match');
 
                 return $this->dispatcher->forward(
                     [
@@ -108,6 +117,23 @@ class AdminController extends ControllerBase
                         "action"     => "edit",
                     ]
                 );
+            } else {
+                $hash_password = password_hash($password, PASSWORD_DEFAULT);
+                $admin->password = $hash_password;
+
+                if ($admin->save()) {
+                    $this->response->redirect('/admin/all');
+                } else {
+                    $messages = $admin->getMessages();
+                    $this->view->messages = $messages;
+
+                    return $this->dispatcher->forward(
+                        [
+                            "controller" => "admin",
+                            "action"     => "edit",
+                        ]
+                    );
+                }
             }
         } else {
             $admin->save();
