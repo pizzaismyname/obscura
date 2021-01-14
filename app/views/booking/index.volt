@@ -25,7 +25,7 @@
 				<td>
 					<div class="row">
 						<div class="col-md">
-							<button type="button" class="booking-details btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ booking.id }}" data-name="{{ booking.name }}" data-phone="{{ booking.phone }}" data-email="{{ booking.email }}" data-address="{{ booking.address }}" data-date="{{ booking.date }}" data-start="{{ booking.start_time|slice(0,4) }}" data-end="{{ booking.end_time|slice(0,4) }}" data-theme="{{ booking.themes.name }}" data-price="{{ booking.price }}" data-status="{% if booking.status == 1 %}Approved{% else %}Pending{% endif %}" data-admin="{{ booking.admins.name }}">
+							<button type="button" class="booking-details btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ booking.id }}" data-name="{{ booking.name }}" data-phone="{{ booking.phone }}" data-email="{{ booking.email }}" data-address="{{ booking.address }}" data-date="{{ booking.date }}" data-start="{{ booking.start_time|slice(0,4) }}" data-end="{{ booking.end_time|slice(0,4) }}" data-theme="{{ booking.themes.name }}" data-price="{{ booking.price }}" data-status="{% if booking.status == 1 %}Approved{% else %}Pending{% endif %}" data-admin="{% if booking.status == 1 %}{{ booking.admins.name }}{% endif %}">
 								Details
 							</button>
 						</div>

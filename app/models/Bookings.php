@@ -107,7 +107,7 @@ class Bookings extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("dbo");
+        $this->setSchema("obscura");
         $this->setSource("bookings");
         $this->belongsTo('id_admin', '\Admins', 'id', ['alias' => 'Admins']);
         $this->belongsTo('id_theme', '\Themes', 'id', ['alias' => 'Themes']);

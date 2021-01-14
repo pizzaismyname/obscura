@@ -40,7 +40,7 @@ class Themes extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("dbo");
+        $this->setSchema("obscura");
         $this->setSource("themes");
         $this->hasMany('id', 'Bookings', 'id_theme', ['alias' => 'Bookings']);
     }
