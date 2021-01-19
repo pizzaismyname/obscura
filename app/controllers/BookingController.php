@@ -129,46 +129,36 @@ class BookingController extends ControllerBase
     }
 
     public function invoiceAction()
-    { }
+    {
+    }
 
     public function checkAction()
     {
-        $check_date = $this->request->getPost('date');
-        $check_start_time = $this->request->getPost('start_time');
-        $check_end_time = $this->request->getPost('end_time');
+        $inputDate = $this->request->getPost('date');
+        $inputStartTime = $this->request->getPost('start_time');
+        $inputEndTime = $this->request->getPost('end_time');
 
         $bookings = Bookings::find();
+        $isAvailable = true;
+        // TODO: validate null inputs
+        foreach ($bookings as $booking) {
+            $date = $booking->date;
+            if ($date != $inputDate) {
+                continue;
+            } else {
+                $startTime = date("H:i", strtotime('-0 minutes', strtotime($booking->start_time)));
+                $endTime = date("H:i", strtotime('+30 minutes', strtotime($booking->end_time)));
 
-        $available = 1;
+                $inputTimeOverlapWithExistingTime = $inputStartTime <= $startTime && $inputEndTime >= $endTime;
 
-        if ($check_date == null || $check_start_time == null || $check_end_time == null) {
-            $available = 0;
-        } else {
-            foreach ($bookings as $booking) {
-                $date = $booking->date;
-                if ($date != $check_date) {
-                    continue;
-                } else {
-
-                    $start = strtotime($booking->start_time);
-                    $start_time = date("H:i", strtotime('-0 minutes', $start));
-                    $end = strtotime($booking->end_time);
-                    $end_time = date("H:i", strtotime('+30 minutes', $end));
-
-                    if ($check_start_time >= $start_time && $check_start_time <= $end_time) {
-                        $available = 0;
-                        break;
-                    } elseif ($check_end_time >= $start_time && $check_end_time <= $end_time) {
-                        $available = 0;
-                        break;
-                    } elseif ($check_start_time <= $start_time && $check_end_time >= $end_time) {
-                        $available = 0;
-                        break;
-                    }
+                if ($inputTimeOverlapWithExistingTime) {
+                    $isAvailable = false;
+                    break;
                 }
             }
         }
-        if ($available) {
+
+        if ($isAvailable) {
             $this->flashSession->notice('Yay! Our studio is available for that time and date. Book Now!');
         } else {
             $this->flashSession->notice('Sorry, our studio is not available for that time and date.');
