@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+const PRICE_PER_HOUR = 100000;
+const MINUTES_PER_HOUR = 60;
+const ONE_HOUR = 1;
+const ZERO_MINUTE = 0;
+
 class BookingController extends ControllerBase
 {
 
@@ -80,21 +85,17 @@ class BookingController extends ControllerBase
         }
 
         $theme = Themes::findFirst("id = '$id_theme' ");
+        $themeExtraPrice = $theme->extra_price;
 
         $start = new DateTime($start_time);
         $end = new DateTime($end_time);
         $duration = $start->diff($end);
-        $hours = $duration->format("%H");
-        $minutes = $duration->format("%i");
-        if ($hours <= 1) {
-            $price = 100000 + $theme->extra_price;
-        } else {
-            $price = $hours * 100000 + $theme->extra_price;
-        }
-        $extra_minutes = $minutes % 60;
-        if ($extra_minutes > 0) {
-            $price = $price + 100000;
-        }
+        $hours = $duration->h;
+        $minutes = $duration->i;
+
+        $totalMinutes = $hours * MINUTES_PER_HOUR + $minutes;
+        $totalHours = ceil($totalMinutes / MINUTES_PER_HOUR);
+        $price = $totalHours * PRICE_PER_HOUR + $themeExtraPrice;
 
         $booking = new Bookings();
 
@@ -146,6 +147,7 @@ class BookingController extends ControllerBase
             if ($date != $inputDate) {
                 continue;
             } else {
+                // TODO: avoid magic numbers
                 $startTime = date("H:i", strtotime('-0 minutes', strtotime($booking->start_time)));
                 $endTime = date("H:i", strtotime('+30 minutes', strtotime($booking->end_time)));
 
